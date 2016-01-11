@@ -1,0 +1,8 @@
+extends layout
+block content
+    h3 Welcome #{user.username}, you are #{user.role}
+
+    script.
+        $('ul.nav a').filter(function () {
+            return this.id == 'home';
+        }).parent().addClass('active');

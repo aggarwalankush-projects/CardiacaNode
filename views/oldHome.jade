@@ -1,0 +1,17 @@
+doctype html
+html
+    head
+        script(src='https://code.jquery.com/jquery-1.11.3.min.js')
+    h1 Welcome
+    h3 Patient Information
+    form#patientInfoForm(method='POST', action='/savePatientInfo')
+        pre#patientInfo
+        input#infoButton(type='submit', value='Submit')
+    #patientInfoResponse
+    hr
+    h3 Patient Details for Querying Database
+    form#patientDetailsForm(method='POST', action='/getPatientInfo')
+        pre#patientDetails
+        input(type='submit', value='Submit')
+    iframe#myframe(style="width:100%;height:500px")
+    script(src='/assets/js/sampleData.js')

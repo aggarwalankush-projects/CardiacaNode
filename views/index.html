@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+    <!--<link rel = "stylesheet" href="css/font-awesome.min.css"/>-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css">
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/jquery.timer.js"></script>
+    <script src="js/model.js"></script>
+
+    <!-- adding bootstrap -->
+    <!--<script type = "text/javascript" src = "js/bootstrap.min.js"></script> 	-->
+
+</head>
+<body class="ca_body">
+
+<!-- modal starts -->
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Patient Status</h4>
+            </div>
+            <div class="modal-body">
+                <div class="radio-btn">
+                    <div class="radio-btn-wrapper">
+                        <input type="radio" class="radio-pulse" id="radio-good-pulse" name="radio-pulse"
+                               data-role="none" value="good pulse"><label class="radio" data-role="none">Good
+                        Pulse</label>
+                    </div>
+                    <div class="radio-btn-wrapper">
+                        <input type="radio" class="radio-pulse" id="radio-bad-pulse" name="radio-pulse"
+                               checked="checked" data-role="none" value="bad pulse"><label class="radio"
+                                                                                           data-role="none">Very Weak
+                        /Slow Pulse</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default modal-ok-btn" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- modal ends -->
+
+<div data-role="page" id="home">
+    <div data-role="header">
+        <!--<a href="#" class="ui-btn ui-corner-all ui-shadow ui-icon-home ui-btn-icon-left">Home</a>-->
+        <h1>SBUCA</h1>
+        <!--<a href="#" class="ui-btn ui-corner-all ui-shadow ui-icon-search ui-btn-icon-left">Search</a>-->
+    </div>
+
+    <div>
+        <div data-role="controlgroup" data-type="vertical">
+            <a class="ui-btn ui-btn-b" href="#newpatient" onclick="loadXMLDoc()">New Patient</a>
+            <a href="#existingpatient" class="ui-btn ui-btn-b">Existing Patient</a>
+            <a href="#" class="ui-btn ui-btn-b">Settings</a>
+            <a href="#" class="ui-btn ui-btn-b">Help</a>
+        </div>
+    </div>
+</div>
+
+<!--new patient page -->
+<div data-role="page" id="newpatient">
+    <div data-role="header">
+        <!--<a href="#home" class="ui-btn ui-corner-all ui-shadow ui-icon-home ui-btn-icon-left">Home</a>-->
+        <h1>New Patient</h1>
+        <!--<a href="#" class="ui-btn ui-corner-all ui-shadow ui-icon-search ui-btn-icon-left">Search</a>-->
+    </div>
+
+    <div data-role="main" class="ui-content">
+        <!-- <form method="post" action="demoform.asp"> -->
+        <div class="ui-field-contain">
+            <label for="lastname">Lastname:</label>
+            <input type="text" name="lastname" id="lastname">
+            <!-- <label for="bday">Date of Birth:</label>
+             <input type="date" name="bday" id="bday">
+             <label for="gender">Gender:</label>
+             <input type="text" name="gender" id="gender">
+             <label for="age">Age:</label>
+             <input type="text" name="age" id="age">  -->
+            <label for="mrn">MRN:</label>
+            <input type="text" name="mrn" id="mrn">
+        </div>
+        <input type="submit" data-inline="true" value="Submit" onclick="createRequest(true)">
+        <!--<button href="#cardiac_data" style="width:10%;">Submit</button-->
+        <!-- </form>  -->
+    </div>
+</div>
+<!--Existing patient page -->
+<div data-role="page" id="existingpatient">
+    <div data-role="header">
+        <a href="#home" class="ui-btn ui-corner-all ui-shadow ui-icon-home ui-btn-icon-left">Home</a>
+
+        <h1>Existing Patient</h1>
+        <a href="#" class="ui-btn ui-corner-all ui-shadow ui-icon-search ui-btn-icon-left">Search</a>
+    </div>
+
+    <div class="ui-toolbar ui-widget-header ui-helper-clearfix" style="padding:5px;">
+		  <span style="position: absolute;" class="btnSearch ui-state-default" title="search">
+			<span class="ui-icon ui-icon-search"></span>
+		  </span>
+        <input type="text" id="patient_search" placeholder="Enter email id..." style="float: left;">
+        <a href="#" class="ui-btn ui-corner-all ui-shadow ui-icon-search ui-btn-icon-left"
+           onclick="getPatientInformation()">Search</a>
+    </div>
+
+    <div data-role="main" class="ui-content">
+        <form method="post" action="demoform.asp">
+            <div class="ui-field-contain">
+                <label for="name">Name:</label>
+                <input type="text" name="fullname" id="fullname">
+                <label for="bday">Date of Birth:</label>
+                <input type="date" name="bday" id="bday">
+                <label for="gender">Gender:</label>
+                <input type="text" name="gender" id="gender">
+                <label for="age">Age:</label>
+                <input type="text" name="age" id="age">
+                <label for="email">E-mail:</label>
+                <input type="email" name="email" id="email" placeholder="Your email..">
+            </div>
+            <input type="submit" data-inline="true" value="Submit" onclick="createRequest(false)">
+        </form>
+    </div>
+</div>
+
+<!--cardiac data page -->
+<div data-role="page" id="cardiac_data">
+    <div class="main-content">
+        <div style="margin-left:30px; display: none;">
+            <img src="img/cardiac_app_icon.png" style="height:100px; width:100px; float:left;">
+            <label style="margin-top:45px; font-size:175%;"><span style="color:green; font-weight:bold;">Cardiaca</span></label>
+
+            <div>
+                <img src="img/medical_logo.png"
+                     style="height:100px; width:200px; float:right; margin-right:60px; margin-top:-60px;">
+                <!--  <label style="margin-left:120px;font-size:175%;"><span style="color:green; font-weight:bold; float:right; margin-right:60px;">Stony Brook Medicine</span></label> -->
+            </div>
+
+        </div>
+        <div>
+            <div id="name-wrapper">Patient Name: <span id="pname"></span></div>
+             <div id="mrn-wrapper">MRN: <span id="pmrn"></span></div>
+        </div>
+        <div class="hr">
+            <hr/>
+        </div>
+        <div class="new-patient-header">
+            <label id="cardiac-arrest-info"><span
+                    id="cardiac-arrest-info-text">Cardiac Arrest Information</span></label>
+
+            <div class="timers">
+                <label for="code" id="code">CODE: 00:00:00</label>
+                <label for="cpr" id="cpr" onclick="stopcpr();">CPR: 00:00:00</label>
+                <label for="epi2" id="epi2" onclick="epi_click(this);">EPI: 00:00:00</label>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table id="mytable_head" class="table-responsive">
+                <thead class="cardiac-table-head">
+                <tr class="header-row ca_row">
+                    <th class="column" id="time-header">Time</th>
+                    <th class="column" id="cpr-header">CPR</th>
+                    <th class="column" id="monitor-header">Monitoring</th>
+                    <th class="column" id="intervention-header">Intervention</th>
+                    <th class="column" id="bolus-header">Bolus</th>
+                </tr>
+                </thead>
+                <tbody class="ui-widget-content cardiac-table-body" id="table_body">
+                <!-- first row -->
+                <tr class="ca_row hidden" id="ca_row_hidden">
+                    <td class="ca_col" id="time-col">00:00:00</td>
+                    <td class="ca_col" id="cpr-col" >
+                        <form role="form">
+                            <div class="form-group">
+                                <select name="cpr" id="speed" class="form-control select-ctrl" data-role="none"
+                                        onchange="notifcation_handler(this)">
+                                    <option selected="selected">Select</option>
+                                    <option value="Manual">Manual</option>
+                                    <option value="Mechanical">Mechanical</option>
+                                    <option value="ECMO">ECMO</option>
+                                    <option value="Open-Chest">Open Chest</option>
+                                    <option value="None">None</option>
+                                </select>
+                            </div>
+                        </form>
+                    </td>
+                    <td class="ca_col" id="monitor-col">
+                        <div class="parent_fill">
+                            <form role="form">
+                                <div class="block_align form-group">
+                                    <select name="Monitoring" id="monitor" data-role="none"
+                                            class="form-control select-ctrl monitor-select"
+                                            onchange="radiohandler(this)">
+                                        <option selected="selected">Select</option>
+                                        <option value="Bedside-US">Bedside US</option>
+                                        <option value="Brain-Ox">Brain Ox</option>
+                                        <option value="Wave-etC02">Wave etC02</option>
+                                        <option value="Artlines-MAP">Artlines MAP</option>
+                                        <option value="Normal-Sinus">Normal Sinus</option>
+                                    </select>
+                                    <input type="text" class="form-control input-ctrl monitor-input" data-role="none">
+							  		<span class="input-group-btn btn-ctrl">
+              							<button type="button" class="btn btn-default table-btn add_new_monitoring"
+                                                data-role="none" onclick="onclick_handler(this);">
+                                            <i class="fa fa-plus table-icon icon-add"></i>
+                                            <i class="fa fa-times table-icon icon-remove"></i>
+                                        </button>
+									</span>
+                                </div>
+                            </form>
+                        </div>
+                    </td>
+                    <td class="ca_col" id="intervention-col" >
+                        <div class="parent_fill">
+                            <form role="form">
+                                <div class="block_align form-group">
+                                    <select name="intervention" id="intervention" data-role="none"
+                                            class="form-control select-ctrl intervention-select"
+                                            onchange="radiohandler(this)">
+                                        <option selected="selected">Select</option>
+                                        <option value="Defrib">Defrib</option>
+                                        <option value="Airway">Airway</option>
+                                        <option value="C-Line-Placed">C Line Placed</option>
+                                        <option value="IO-Line-Placed">IO Line Placed</option>
+                                        <option value="ResQ-Pod">ResQ Pod</option>
+                                        <option value="Transvenous-PM">Transvenous PM</option>
+                                    </select>
+                                    <input type="text" name="temp" id="temp"
+                                           class="form-control input-ctrl intervention-input" data-role="none">
+								  	<span class="input-group-btn btn-ctrl">
+								  		<button type="button" class="btn btn-default table-btn add_new_intervention"
+                                                data-role="none" onclick="onclick_handler(this);">
+                                            <i class="fa fa-plus table-icon icon-add"></i>
+                                            <i class="fa fa-times table-icon icon-remove"></i>
+                                        </button>
+								  	</span>
+                                </div>
+                            </form>
+                        </div>
+                    </td>
+                    <td class="ca_col" id="bolus-col">
+                        <div class="parent_fill">
+                            <form role="form">
+                                <div class="block_align form-group">
+                                    <select name="bolus" id="bolus" data-role="none"
+                                            class="form-control select-ctrl bolus-select" onchange="radiohandler(this)">
+                                        <option selected="selected">Select</option>
+                                        <option value="Atropine">Atropine</option>
+                                        <option value="Amiodarone">Amiodarone</option>
+                                        <option value="Magnesium">Magnesium</option>
+                                        <option value="D50W">D50W</option>
+                                        <option value="D10W">D10W</option>
+                                        <option value="Sodium-Bicarb">Sodium Bicarb</option>
+                                        <option value="Lidocaine">Lidocaine</option>
+                                        <option value="Vasopressin">Vasopressin</option>
+                                        <option value="IV-Fluids">IV Fluids</option>
+                                        <option value="Other-Therapy">Other Therapy</option>
+                                    </select>
+                                    <input type="text" name="temp" id="temp" class="form-control input-ctrl bolus-input"
+                                           data-role="none">
+							  		<span class="input-group-btn btn-ctrl">
+              							<button type="button" class="btn btn-default table-btn add_new_bolus"
+                                                data-role="none" onclick="onclick_handler(this);">
+                                            <i class="fa fa-plus table-icon icon-add"></i>
+                                            <i class="fa fa-times table-icon icon-remove"></i>
+                                        </button>
+									</span>
+                                </div>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr class="ca_row" id="ca_row-1">
+                    <td class="ca_col" id="time-col">00:00:00</td>
+                    <td class="ca_col" id="cpr-col" >
+                        <form role="form">
+                            <div class="form-group">
+                                <select name="cpr" id="speed" class="form-control select-ctrl" data-role="none"
+                                        onchange="notifcation_handler(this)">
+                                    <option selected="selected">Select</option>
+                                    <option value="Manual">Manual</option>
+                                    <option value="Mechanical">Mechanical</option>
+                                    <option value="ECMO">ECMO</option>
+                                    <option value="Open-Chest">Open Chest</option>
+                                    <option value="None">None</option>
+                                </select>
+                            </div>
+                        </form>
+                    </td>
+                    <td class="ca_col" id="monitor-col" >
+                        <div class="parent_fill">
+                            <form role="form">
+                                <div class="block_align form-group">
+                                    <select name="Monitoring" id="monitor" data-role="none"
+                                            class="form-control select-ctrl monitor-select"
+                                            onchange="radiohandler(this)">
+                                        <option selected="selected">Select</option>
+                                        <option value="Bedside-US">Bedside US</option>
+                                        <option value="Brain-Ox">Brain Ox</option>
+                                        <option value="Wave-etC02">Wave etC02</option>
+                                        <option value="Artlines-MAP">Artlines MAP</option>
+                                        <option value="Normal-Sinus">Normal Sinus</option>
+                                    </select>
+                                    <input type="text" class="form-control input-ctrl monitor-input" data-role="none">
+							  		<span class="input-group-btn btn-ctrl">
+              							<button type="button" class="btn btn-default table-btn add_new_monitoring"
+                                                data-role="none" onclick="onclick_handler(this);">
+                                            <i class="fa fa-plus table-icon icon-add"></i>
+                                            <i class="fa fa-times table-icon icon-remove"></i>
+                                        </button>
+									</span>
+                                </div>
+                            </form>
+                        </div>
+                    </td>
+                    <td class="ca_col" id="intervention-col" >
+                        <div class="parent_fill">
+                            <form role="form">
+                                <div class="block_align form-group">
+                                    <select name="intervention" id="intervention" data-role="none"
+                                            class="form-control select-ctrl intervention-select"
+                                            onchange="radiohandler(this)">
+                                        <option selected="selected">Select</option>
+                                        <option value="Defrib">Defrib</option>
+                                        <option value="Airway">Airway</option>
+                                        <option value="C-Line-Placed">C Line Placed</option>
+                                        <option value="IO-Line-Placed">IO Line Placed</option>
+                                        <option value="ResQ-Pod">ResQ Pod</option>
+                                        <option value="Transvenous-PM">Transvenous PM</option>
+                                    </select>
+                                    <input type="text" name="temp" id="temp"
+                                           class="form-control input-ctrl intervention-input" data-role="none">
+								  	<span class="input-group-btn btn-ctrl">
+								  		<button type="button" class="btn btn-default table-btn add_new_intervention"
+                                                data-role="none" onclick="onclick_handler(this);">
+                                            <i class="fa fa-plus table-icon icon-add"></i>
+                                            <i class="fa fa-times table-icon icon-remove"></i>
+                                        </button>
+								  	</span>
+                                </div>
+                            </form>
+                        </div>
+                    </td>
+                    <td class="ca_col" id="bolus-col" >
+                        <div class="parent_fill">
+                            <form role="form">
+                                <div class="block_align form-group">
+                                    <select name="bolus" id="bolus" data-role="none"
+                                            class="form-control select-ctrl bolus-select" onchange="radiohandler(this)">
+                                        <option selected="selected">Select</option>
+                                        <option value="Atropine">Atropine</option>
+                                        <option value="Amiodarone">Amiodarone</option>
+                                        <option value="Magnesium">Magnesium</option>
+                                        <option value="D50W">D50W</option>
+                                        <option value="D10W">D10W</option>
+                                        <option value="Sodium-Bicarb">Sodium Bicarb</option>
+                                        <option value="Lidocaine">Lidocaine</option>
+                                        <option value="Vasopressin">Vasopressin</option>
+                                        <option value="IV-Fluids">IV Fluids</option>
+                                        <option value="Other-Therapy">Other Therapy</option>
+                                    </select>
+                                    <input type="text" name="temp" id="temp" class="form-control input-ctrl bolus-input"
+                                           data-role="none">
+							  		<span class="input-group-btn btn-ctrl">
+              							<button type="button" class="btn btn-default table-btn add_new_bolus"
+                                                data-role="none" onclick="onclick_handler(this);">
+                                            <i class="fa fa-plus table-icon icon-add"></i>
+                                            <i class="fa fa-times table-icon icon-remove"></i>
+                                        </button>
+									</span>
+                                </div>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="radio" class="radio-ctrl">
+            <div class="radio-container">
+                <div class="radio-btn">
+                    <button type="button" class="btn btn-default btn-compression" name="radio"
+                            id="compression_interrupted" data-role="none" onclick="compression_handler(this)">
+                        Compressions interrupted
+                    </button>
+                    <button type="button" class="btn btn-default btn-compression" name="radio"
+                            id="compression_restarted" data-role="none" onclick="compression_handler(this)">Compressions
+                        Restarted
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+
+            <!-- start......radio button for compression interrupted and restarted-->
+            <!-- end......radio button for compression interrupted and restarted-->
+
+            <!-- start... dialog for patient unresponsive-->
+
+            <div class="panel-group " id="accordion">
+
+                <div class="panel panel-default compression_popup_hide compression_popup"
+                     id="compression-popup-template">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion">
+                                Compression Interrupted
+                            </a>
+
+                            <div class="time-wrapper ">
+                                <span class="compression-popup-ask-time">00:00:00</span>
+                            </div>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            Now it's been >10 sec without compressions.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- vt/vf instruction second popup-->
+                <div class="panel panel-default defib-panel hide" id="defib-panel-template">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">Defibrillation</a>
+
+                            <div class="time-wrapper ">
+                                <span class="defib-ask-time "></span>
+                                <span class="reply-time defib-label"></span>
+                            </div>
+                        </h4>
+                    </div>
+                    <div id="collapseSeven" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <div class="radio-btn container popup-panel-wrapper">
+                                <div class="radio-btn-wrapper row">
+                                    <div class="vt-radio-wrapper col-xs-8">
+                                        <input type="radio" class="radio-vt" id="radio-vt-defib" name="radio-defib"
+                                               data-role="none" onchange="defibPerformedHandler(this);">
+                                        <label class="radio" data-role="none">Defibrillation performed</label>
+                                    </div>
+                                    <div class="vt-defib-input-wrapper col-xs-4">
+                                        <input data-role="none" id="text_defibrillation_time" class="form-control"
+                                               type="text" placeholder="hh:mm:ss"/>
+                                    </div>
+                                </div>
+                                <div class="radio-btn-wrapper row">
+                                    <div class="vt-radio-wrapper col-xs-12">
+                                        <input type="radio" class="radio-vt" id="radio-vt-defib-held" name="radio-defib"
+                                               data-role="none" onchange="notInVTVFHandler(this);">
+                                        <label class="radio" data-role="none">No longer in VT/VF. Defibrillation
+                                            held.</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default vt-vf-inst-panel hide" id="vt-vf-panel-template">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">VT/VF
+                                Instructions</a>
+                        </h4>
+
+                        <div class="time-wrapper">
+                            <span class="vt-vf-ask-time"></span>
+                        </div>
+                    </div>
+                    <div id="collapseSix" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <div class="container popup-panel-wrapper">
+                                <div class="vt-wrapper row">
+                                    <div class="vt-defib-wrapper col-xs-12">
+                                        <ul data-role="none">
+                                            <li>Prepare defibrillator</li>
+                                            <li>If the code leader says "Off the bed", press the Compressions
+                                                Interrupted button
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- if besides VT and VF selected, EPI given not given pop up-->
+                <div class="panel panel-default epi-panel hide" id="epi-panel-template">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">EPI</a>
+
+                            <div class="time-wrapper">
+                                <span class="epi-ask-time"></span>
+                                <span class="reply-time epi-label"></span>
+                            </div>
+                        </h4>
+                    </div>
+                    <div id="collapseFive" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <div class="radio-btn container popup-panel-wrapper" onchange="epi_handler(this);"
+                                 data-cprpanel="false">
+                                <div class="radio-btn-wrapper row">
+                                    <div class="epi-radio-wrapper col-xs-12">
+                                        <input type="radio" class="radio-epi" id="radio-not-epi" name="radio-epi"
+                                               data-role="none">
+                                        <label class="radio" data-role="none">EPI not yet given</label>
+                                    </div>
+                                </div>
+                                <div class="radio-btn-wrapper row">
+                                    <div class="epi-radio-wrapper col-xs-12">
+                                        <input type="radio" class="radio-epi" id="radio-last-epi" name="radio-epi"
+                                               data-role="none">
+                                        <label class="radio" data-role="none">Last EPI dose 12 mins ego</label>
+                                    </div>
+                                </div>
+                                <div class="radio-btn-wrapper row">
+                                    <div class="epi-radio-wrapper col-xs-12">
+                                        <input type="radio" class="radio-epi" id="radio-epi-given" name="radio-epi"
+                                               data-role="none">
+                                        <label class="radio" data-role="none">EPI given</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--  place backboard , place defib pads-->
+                <div class="panel panel-default cardiac-rhythm-panel hidden" id="cardiac-rhythm-panel-template">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">What is Cardiac
+                                Rhythm?</a>
+
+                            <div class="time-wrapper">
+                                <span class="ask-time rhythm-ask-label"></span>
+                                <span class="reply-time rhythm-label "></span>
+                            </div>
+                        </h4>
+                    </div>
+                    <div id="collapseFour" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <div class="container popup-panel-wrapper">
+                                <div class="dropdown-wrapper row">
+                                    <div class="cardiac-rhythm-wrapper col-xs-12">
+                                        <select name="cardiac-rhythm" id="cardiac_rhythm" data-role="none"
+                                                class="form-control  rhythm-select"
+                                                onchange="cardiacRhythmChangeHandler(this);" data-vtpanel="false"
+                                                data-defibpanel="false" data-epipanel="false">
+                                            <option selected="selected">Select</option>
+                                            <option>Asystole</option>
+                                            <option>PEA</option>
+                                            <option>VT</option>
+                                            <option>VF</option>
+                                            <option>Bradycardia</option>
+                                            <option>Other</option>
+                                            <option>Unknown</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="panel panel-default compression-panel hidden" id="compression-panel-template">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Compressions
+                                Started</a>
+
+                            <div class="time-wrapper">
+                                <span class="ask-time compression-ask-label"></span>
+                                <span class="reply-time compression-label"></span>
+                            </div>
+                        </h4>
+                    </div>
+
+                    <div id="collapseThree" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <div class="radio-btn container popup-panel-wrapper">
+                                <div class="radio-btn-wrapper row">
+                                    <div class="compression-radio-wrapper col-xs-6">
+                                        <input type="radio" class="radio-compression" id="radio-now"
+                                               name="radio-compression" data-role="none"
+                                               onchange="compressionNowHandler(this);" data-panel='false'>
+                                        <label class="radio" data-role="none">Now</label>
+                                    </div>
+                                    <div class="compression-input-wrapper col-xs-6">
+                                        <input data-role="none" type="text" id="text_compression_time"
+                                               placeholder="hh:mm:ss"/>
+                                    </div>
+                                </div>
+                                <div class="radio-btn-wrapper row">
+                                    <div class="compression-radio-wrapper col-xs-6">
+                                        <input type="radio" class="radio-compression" id="radio-cpr-abort"
+                                               name="radio-compression" data-role="none"
+                                               onchange="cprAbortedHandler(this);">
+                                        <label class="radio" data-role="none">CPR Aborted</label>
+                                    </div>
+                                    <div class="compression-input-wrapper col-xs-6">
+                                        <input type="text" data-role="none" placeholder="Enter the reason"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Patient Unresponsive?
+                                Check Pulse</a>
+
+                            <div class="time-wrapper">
+                                <span class="ask-time ">00:00:00</span>
+                                <span class="reply-time pulse-label"></span>
+                            </div>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <div class="radio-btn container popup-panel-wrapper">
+                                <div class="radio-btn-wrapper col-xs-12">
+                                    <input type="radio" class="radio-pulse" id="radio-good-pulse" name="radio-pulse"
+                                           data-role="none" onchange="goodPulseHandler(this);">
+                                    <label class="radio" data-role="none">Good Pulse</label>
+                                </div>
+                                <div class="radio-btn-wrapper col-xs-12">
+                                    <input type="radio" class="radio-pulse" id="radio-bad-pulse" name="radio-pulse"
+                                           data-role="none" onchange="badPulseHandler(this);" data-panel='false'>
+                                    <label class="radio" data-role="none">Very Weak /Slow Pulse</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default cpr-panel hidden" id="cpr-panel-template">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseEight">Set CPR</a>
+
+                            <div class="time-wrapper">
+                                <span class="cpr-ask-time"></span>
+                                <span class="reply-time cpr-label"></span>
+                            </div>
+                        </h4>
+                    </div>
+                    <div id="collapseEight" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <div class="radio-btn container popup-panel-wrapper" data-monitorpanel="false">
+                                <div class="radio-btn-wrapper col-xs-12">
+                                    <input type="radio" class="radio-cpr" id="radio-cpr-manual" name="radio-cpr"
+                                           data-role="none" onchange="cprhandler(this);" value="Manual">
+                                    <label class="radio" data-role="none">Manual</label>
+                                </div>
+                                <div class="radio-btn-wrapper col-xs-12">
+                                    <input type="radio" class="radio-cpr" id="radio-cpr-mechanical" name="radio-cpr"
+                                           data-role="none" onchange="cprhandler(this);" value="Mechanical">
+                                    <label class="radio" data-role="none">Mechanical</label>
+                                </div>
+                                <div class="radio-btn-wrapper col-xs-12">
+                                    <input type="radio" class="radio-cpr" id="radio-cpr-ecmo" name="radio-cpr"
+                                           data-role="none" onchange="cprhandler(this);" value="ECMO">
+                                    <label class="radio" data-role="none">ECMO</label>
+                                </div>
+                                <div class="radio-btn-wrapper col-xs-12">
+                                    <input type="radio" class="radio-cpr" id="radio-cpr-open-chest" name="radio-cpr"
+                                           data-role="none" onchange="cprhandler(this);" value="Open-Chest">
+                                    <label class="radio" data-role="none">Open Chest</label>
+                                </div>
+                                <div class="radio-btn-wrapper col-xs-12">
+                                    <input type="radio" class="radio-cpr" id="radio-cpr-none" name="radio-cpr"
+                                           data-role="none" onchange="cprhandler(this);" value="None">
+                                    <label class="radio" data-role="none">None</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="panel panel-default monitor-panel hidden" id="monitor-panel-template">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseNine">Set Monitoring</a>
+
+                            <div class="time-wrapper">
+                                <span class="monitor-ask-time"></span>
+                                <span class="reply-time monitor-label "></span>
+                            </div>
+                        </h4>
+                    </div>
+                    <div id="collapseNine" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <div class="radio-btn container popup-panel-wrapper" data-interventionpanel="false">
+                                <div class="radio-btn-wrapper col-xs-12">
+                                    <input type="radio" class="radio-monitor" id="radio-monitor-bedside"
+                                           name="radio-monitor"
+                                           data-role="none" onchange="monitorhandler(this);" value="Bedside-US">
+                                    <label class="radio" data-role="none">Bedside US</label>
+                                </div>
+                                <div class="radio-btn-wrapper col-xs-12">
+                                    <input type="radio" class="radio-monitor" id="radio-monitor-brain"
+                                           name="radio-monitor"
+                                           data-role="none" onchange="monitorhandler(this);" value="Brain-Ox">
+                                    <label class="radio" data-role="none">Brain Ox</label>
+                                </div>
+                                <div class="radio-btn-wrapper col-xs-12">
+                                    <input type="radio" class="radio-monitor" id="radio-monitor-wave"
+                                           name="radio-monitor"
+                                           data-role="none" onchange="monitorhandler(this);" value="Wave-etC02">
+                                    <label class="radio" data-role="none">Wave etC02</label>
+                                </div>
+                                <div class="radio-btn-wrapper col-xs-12">
+                                    <input type="radio" class="radio-monitor" id="radio-monitor-artlines"
+                                           name="radio-monitor"
+                                           data-role="none" onchange="monitorhandler(this);" value="Artlines-MAP">
+                                    <label class="radio" data-role="none">Artlines MAP</label>
+                                </div>
+                                <div class="radio-btn-wrapper col-xs-12">
+                                    <input type="radio" class="radio-monitor" id="radio-monitor-sinus"
+                                           name="radio-monitor"
+                                           data-role="none" onchange="monitorhandler(this);" value="Normal-Sinus">
+                                    <label class="radio" data-role="none">Normal Sinus</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default intervention-panel hidden" id="intervention-panel-template">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTen">Set Intervention</a>
+
+                            <div class="time-wrapper">
+                                <span class="intervention-ask-time"></span>
+                                <span class="reply-time intervention-label"></span>
+                            </div>
+                        </h4>
+                    </div>
+                    <div id="collapseTen" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <div class="radio-btn container popup-panel-wrapper" data-boluspanel="false">
+                                <div class="radio-btn-wrapper col-xs-12">
+                                    <input type="radio" class="radio-intervention" id="radio-intervention-defrib"
+                                           name="radio-intervention"
+                                           data-role="none" onchange="interventionhandler(this);" value="Defrib">
+                                    <label class="radio" data-role="none">Defrib</label>
+                                </div>
+                                <div class="radio-btn-wrapper col-xs-12">
+                                    <input type="radio" class="radio-intervention" id="radio-intervention-airway"
+                                           name="radio-intervention"
+                                           data-role="none" onchange="interventionhandler(this);" value="Airway">
+                                    <label class="radio" data-role="none">Airway</label>
+                                </div>
+                                <div class="radio-btn-wrapper col-xs-12">
+                                    <input type="radio" class="radio-intervention" id="radio-intervention-cline"
+                                           name="radio-intervention"
+                                           data-role="none" onchange="interventionhandler(this);" value="C-Line-Placed">
+                                    <label class="radio" data-role="none">C Line Placed</label>
+                                </div>
+                                <div class="radio-btn-wrapper col-xs-12">
+                                    <input type="radio" class="radio-intervention" id="radio-intervention-ioline"
+                                           name="radio-intervention"
+                                           data-role="none" onchange="interventionhandler(this);"
+                                           value="IO-Line-Placed">
+                                    <label class="radio" data-role="none">IO Line Placed</label>
+                                </div>
+                                <div class="radio-btn-wrapper col-xs-12">
+                                    <input type="radio" class="radio-intervention" id="radio-intervention-resqpod"
+                                           name="radio-intervention"
+                                           data-role="none" onchange="interventionhandler(this);" value="ResQ-Pod">
+                                    <label class="radio" data-role="none">ResQ Pod</label>
+                                </div>
+                                <div class="radio-btn-wrapper col-xs-12">
+                                    <input type="radio" class="radio-intervention" id="radio-intervention-transvenous"
+                                           name="radio-intervention"
+                                           data-role="none" onchange="interventionhandler(this);"
+                                           value="Transvenous-PM">
+                                    <label class="radio" data-role="none">Transvenous PM</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default bolus-panel hidden" id="bolus-panel-template">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseEleven">Set Bolus</a>
+
+                            <div class="time-wrapper">
+                                <span class="bolus-ask-time"></span>
+                                <span class="reply-time bolus-label"></span>
+                            </div>
+                        </h4>
+                    </div>
+                    <div id="collapseEleven" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <div class="radio-btn container popup-panel-wrapper">
+                                <div class="radio-btn-wrapper col-xs-12">
+                                    <input type="radio" class="radio-bolus" id="radio-bolus-atropine" name="radio-bolus"
+                                           data-role="none" onchange="bolushandler(this);" value="Atropine">
+                                    <label class="radio" data-role="none">Atropine</label>
+                                </div>
+                                <div class="radio-btn-wrapper col-xs-12">
+                                    <input type="radio" class="radio-bolus" id="radio-bolus-amiodarone"
+                                           name="radio-bolus"
+                                           data-role="none" onchange="bolushandler(this);" value="Amiodarone">
+                                    <label class="radio" data-role="none">Amiodarone</label>
+                                </div>
+                                <div class="radio-btn-wrapper col-xs-12">
+                                    <input type="radio" class="radio-bolus" id="radio-bolus-magnesium"
+                                           name="radio-bolus"
+                                           data-role="none" onchange="bolushandler(this);" value="Magnesium">
+                                    <label class="radio" data-role="none">Magnesium</label>
+                                </div>
+                                <div class="radio-btn-wrapper col-xs-12">
+                                    <input type="radio" class="radio-bolus" id="radio-bolus-d50w" name="radio-bolus"
+                                           data-role="none" onchange="bolushandler(this);" value="D50W">
+                                    <label class="radio" data-role="none">D50W</label>
+                                </div>
+                                <div class="radio-btn-wrapper col-xs-12">
+                                    <input type="radio" class="radio-bolus" id="radio-bolus-d10w" name="radio-bolus"
+                                           data-role="none" onchange="bolushandler(this);" value="D10W">
+                                    <label class="radio" data-role="none">D10W</label>
+                                </div>
+                                <div class="radio-btn-wrapper col-xs-12">
+                                    <input type="radio" class="radio-bolus" id="radio-bolus-bicarb" name="radio-bolus"
+                                           data-role="none" onchange="bolushandler(this);" value="Sodium-Bicarb">
+                                    <label class="radio" data-role="none">Sodium Bicarb</label>
+                                </div>
+                                <div class="radio-btn-wrapper col-xs-12">
+                                    <input type="radio" class="radio-bolus" id="radio-bolus-lidocaine"
+                                           name="radio-bolus"
+                                           data-role="none" onchange="boldler(this);" value="Lidocaine">
+                                    <label class="radio" data-role="none">Lidocaine</label>
+                                </div>
+                                <div class="radio-btn-wrapper col-xs-12">
+                                    <input type="radio" class="radio-bolus" id="radio-bolus-vasopressin"
+                                           name="radio-bolus"
+                                           data-role="none" onchange="bolushandler(this);" value="Vasopressin">
+                                    <label class="radio" data-role="none">Vasopressin</label>
+                                </div>
+                                <div class="radio-btn-wrapper col-xs-12">
+                                    <input type="radio" class="radio-bolus" id="radio-bolus-iv" name="radio-bolus"
+                                           data-role="none" onchange="bolushandler(this);" value="IV-Fluids">
+                                    <label class="radio" data-role="none">IV Fluids</label>
+                                </div>
+                                <div class="radio-btn-wrapper col-xs-12">
+                                    <input type="radio" class="radio-bolus" id="radio-bolus-other" name="radio-bolus"
+                                           data-role="none" onchange="bolushandler(this);" value="Other-Therapy">
+                                    <label class="radio" data-role="none">Other Therapy</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end ... end dialog for patience unresponsive-->
+            </div>
+        </div>
+
+        <div class="submit-data">
+            <input type="submit" data-inline="true" value="Submit" class="btn-patient-data-submit"
+                   onclick="submit_cpr_data();">
+        </div>
+
+
+        <!--
+
+        <div class="footer">
+              <label for="cpr" id="cpr" style="width:50%; float:left;font-size: large; ">CPR: 0</label>
+              <label for="epi2" id="epi2" style="margin-left:94.5%;font-size: large;" onclick="epi_click(this);">EPI: 0</label>
+        </div>
+        -->
+        <div class="notification">
+            <div class="notification-wrapper">
+                <div class="notification-content">
+                </div>
+			<span class="dismiss" onclick="hide_notification()">
+				<a title="dismiss this notification">OK</a>
+			</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="report-page">
+        <div class="report-patient-info">
+            <div id="report-name-wrapper">Patient Name: <span id="report-pname"></span></div>
+            <div id="report-mrn-wrapper">MRN: <span id="report-pmrn"></span></div>
+        </div>
+        <table id="mytable_report" class="table-responsive table-hidden">
+            <thead class="cardiac-table-head">
+            <tr class="header-row ca_row">
+                <th class="column" id="time-header">Time</th>
+                <th class="column" id="cpr-header">CPR</th>
+                <th class="column" id="monitor-header">Monitoring</th>
+                <th class="column" id="intervention-header">Intervention</th>
+                <th class="column" id="bolus-header">Bolus</th>
+            </tr>
+            </thead>
+            <tbody id="report-body">
+            <tr class="report-row row-hidden" id='report-row-template'>
+                <td class="report-column report-time-col" id="time-val">Time</td>
+                <td class="report-column report-cpr-col" id="cpr-val">CPR</td>
+                <td class="report-column report-monitor-col" id="monitor-val">Monitoring</td>
+                <td class="report-column report-intervention-col" id="intervention-val">Intervention</td>
+                <td class="report-column report-bolus-col" id="bolus-val">Bolus</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

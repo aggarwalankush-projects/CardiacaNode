@@ -1,0 +1,64 @@
+nav.navbar.navbar-custom.navbar-inverse.navbar-static-top
+    .container-fluid
+        .navbar-header
+            button.navbar-toggle(type='button', data-toggle='collapse', data-target='#myNavbar')
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+            a.navbar-brand(href='/') Cardiac App
+        #myNavbar.collapse.navbar-collapse
+            ul.nav.navbar-nav
+                li
+                    a(href='/' id='home') Home
+                li
+                    a(href='/cpr' id='cprH') CPR
+                li
+                    a(href='/' id='reports') Reports
+                if(user.role === 'admin')
+                    li.dropdown
+                        a.dropdown-toggle(data-toggle='dropdown' href='#' id='manage')
+                            | Manage Users&nbsp;
+                            b.caret
+                        ul.dropdown-menu
+                            li
+                                a(href="#addUserModal" role="button" data-toggle="modal" data-target="#addUserModal") Add User
+                            li
+                                a(href='/editUser') View/Edit Users
+            ul.nav.navbar-nav.navbar-right
+                li
+                    a(href='/logout')
+                        | Sign out&nbsp;
+                        i.fa.fa-sign-out
+
+#addUserModal.modal.fade
+    .modal-dialog
+        .modal-content
+            .modal-header
+                button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    span(aria-hidden='true') ×
+                h5.modal-title Add New User
+            .modal-body
+                form#addUserForm.form-horizontal(method='post', action='/addUser')
+                    .form-group
+                        label.col-xs-3.control-label Username
+                        .col-xs-5
+                            input.form-control(type='text', name='username', required='', placeholder='Enter username')
+                            #addAlert.alert.alert-danger.custom-alert(role='alert', hidden='true')
+                    .form-group
+                        label.col-xs-3.control-label Password
+                        .col-xs-5
+                            input.form-control(type='password', name='password', required='', placeholder='Enter password')
+                    .form-group
+                        label.col-xs-3.control-label Role
+                        .col-xs-5
+                            label.radio-inline
+                                input(type='radio', name='role', value='user' checked)
+                                | User
+                            label.radio-inline
+                                input(type='radio', name='role', value='admin')
+                                | Admin
+                    .form-group
+                        .col-xs-6.col-xs-offset-3
+                            .btn-toolbar
+                                button#addUserBtn.btn.btn-primary(type='submit') Add User
+                                button.btn.btn-default(type='button', data-dismiss='modal') Cancel

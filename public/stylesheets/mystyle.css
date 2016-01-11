@@ -1,0 +1,459 @@
+.home-buttons-style{
+	height: 50px;
+	width: 150px;
+}
+
+.btnSearch {
+	position: relative;
+	padding: 5px;
+	cursor: pointer;
+	float: left;
+}
+.hidden
+{
+	display: none;
+}
+
+.select_class
+{
+	width: 50%;
+	float:left;
+}
+
+.image_class
+{
+	float:right;
+	margin-top:6%;
+}
+
+#cardiac_data_row {
+	height: 430px;
+	overflow-y:scroll;
+	margin-top:-1px;
+}
+
+#cardiac_data {
+	background-color:white;
+	/*height: 100%;*/
+}
+
+.main-content {
+	overflow: auto;
+	height:90%;
+}
+
+.text_class
+{
+	width: 30%;
+	float:left;
+	margin-left: 6px;
+}
+
+.portrait
+{
+	float: right;
+	height:30px;
+	width:30px;
+}
+
+.active{
+	background-color: #E6E6E6;
+}
+
+.sidebar-label{
+	display: inline;
+	float: right;
+}
+
+.compression{
+	z-index: 100;
+}
+
+.compression_highlight {
+	background-color: red;
+}
+
+.compression_popup_hide {
+	display: none;
+}
+
+.btn-compression{
+	padding: 6px 4px;
+}
+
+.hide {
+	display: none;
+}
+
+.popup-panel-wrapper {
+	width: 100%;
+}
+img{
+	max-width: 100%;
+	max-height: 100%;
+
+}
+
+div.hr {
+	background: #2BAD32  no-repeat scroll center;
+	height:.25em;
+	/*margin-top:70px;*/
+}
+
+th, td {
+    border: 1px solid black;
+
+}
+
+td
+{
+	text-align: center;
+}
+th
+{
+	height:50px;
+}
+
+.parent_fill
+{
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+
+.child_select
+{
+	/*width: 80%;*/
+	height: 100%;
+	margin-top: 5px;
+
+}
+
+.child_image
+{
+	width: 20%;
+	height: 100%;
+}
+
+.infusion_div
+{
+	width:90px;
+	float:left;
+}
+
+.new-patient-header{
+	margin-top:30px;
+	margin-bottom:30px;
+}
+
+#cardiac-arrest-info{
+	width:70%;
+	font-size: 140%;
+    display: inline-block;
+    padding-left: 10px;
+}
+
+#cardiac-arrest-info-text{
+	color: red;
+	font-weight: bold;
+}	
+
+#code, #cpr, #epi2{
+	/*float: left;
+	width: 40%;*/
+	font-weight: bold;
+	padding: 5px;
+    display: inline-block;
+}
+
+.timers {
+	float: right;
+	width: 29%;
+}
+
+
+.ca_col{
+	padding-top: 5px;
+}
+
+.form-group{
+	margin-bottom: 5px;
+}
+
+.time-col{
+	top: 5px;
+	position: relative;
+}
+
+.select-ctrl{
+	display: inline-block;
+    max-width: 180px;
+    min-width: 100px;
+    width: 40%
+}
+
+.input-ctrl{
+	display: inline-block;
+    max-width: 180px;
+    min-width: 80px;
+    width: 30%;
+}
+
+.btn-ctrl{
+	max-width: 80px;
+    min-width: 40px;
+    width: 13%;
+    display: inline-block;
+}
+
+.table-btn{
+	padding: 3px 7px;
+	width: 100%;
+}
+
+.table-icon{
+	font-size: 25px;
+    position: relative;
+    top: 1px;
+}
+
+.icon-add{
+	display: inline-block;
+}
+
+.icon-remove{
+	display: none;
+}
+
+.child_select
+{
+	height: 100%;
+	margin-top: 5px;
+
+}
+
+.cardiac-table-head, .cardiac-table-body{
+	display: block;
+}
+
+.cardiac-table-body{
+	height: 300px;
+	/*height: 100%;*/
+	overflow-y: scroll;
+}
+
+.table-responsive{
+	/*padding: 0 5px; */
+	border: none;
+	margin: 0 5px; 
+	overflow-x: auto;
+	overflow-y: hidden;
+	width:71%; 
+	float: left;
+}
+
+.column{
+	text-align: center; 
+}
+
+#time-header, #time-col, .report-time-col{
+	min-width: 70px;
+    max-width: 80px;
+}
+
+#cpr-col, #cpr-header, .report-cpr-col{
+	min-width: 120px;
+    max-width: 150px;
+    padding-top: 5px;
+}
+
+#monitor-col, #intervention-col, #monitor-header, #intervention-header, .report-intervention-col, .report-monitor-col{
+	max-width: 310px;
+    min-width: 250px;
+}
+
+#bolus-col, #bolus-header, .report-bolus-col{
+	min-width: 255px;
+    max-width: 280px;
+}
+
+.child_image
+{
+	width: 20%;
+	height: 100%;
+}
+
+.infusion_div
+{
+	width:90px;
+	float:left;
+}
+
+.radio-ctrl{
+	margin: 0;
+    display: inline-block;
+    width: 27%;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.15);
+    padding: 10px 6px;
+}
+
+.sidebar{
+	overflow-y: scroll;
+	padding: 0 10px;  
+	height:350px;
+	background-color: rgba(0, 0, 0, 0.15);
+}
+
+label.radio-inline{
+	display: inline-block;
+    font-size: 13px;
+}
+
+input.radio-pulse{
+	margin-right: 0;
+}
+
+label.radio{
+	display: inline-block;
+	padding-left: 10px;
+}
+
+.active{
+	background-color:rgb(151, 216, 156);
+}
+
+.dropdown dd, .dropdown dt {
+    margin:0px;
+    padding:0px;
+}
+.dropdown ul {
+    margin: -1px 0 0 0;
+}
+.dropdown dd {
+    position:relative;
+}
+.dropdown a,
+.dropdown a:visited {
+    color:#fff;
+    text-decoration:none;
+    outline:none;
+    /*font-size: 12px;*/
+}
+.dropdown dt a {
+    background-color:#4F6877;
+    display:block;
+    padding: 8px 20px 5px 10px;
+    min-height: 25px;
+    line-height: 24px;
+    overflow: hidden;
+    border:0;
+    width:272px;
+}
+.dropdown dt a span, .multiSel span {
+    cursor:pointer;
+    display:inline-block;
+    padding: 0 3px 2px 0;
+}
+.dropdown dd ul {
+    background-color: #4F6877;
+    border:0;
+    color:#fff;
+    display:none;
+    left:0px;
+    padding: 2px 15px 2px 5px;
+    position:absolute;
+    top:2px;
+    width:280px;
+    list-style:none;
+    height: 100px;
+    overflow: auto;
+}
+.dropdown span.value {
+    display:none;
+}
+.dropdown dd ul li a {
+    padding:5px;
+    display:block;
+}
+.dropdown dd ul li a:hover {
+    background-color:#fff;
+}
+.jqxWidget
+{
+	font-weight: bold;
+	font-family: sans-serif;
+	font-size: medium;
+}
+
+input.radio-pulse{
+    margin-right: 0;
+}
+
+label.radio{
+    display: inline-block !important;
+    padding-left: 10px;
+}	
+
+.notification {
+	display: none;
+    position: fixed;
+    height: 90px;
+    width: 35%;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 5px;
+    z-index: 105;
+    text-align: center;
+    font-size: 14px;
+    color: white;
+    background-color: #757474;
+    padding: 10px;
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+}
+.notification span.dismiss {
+    border: 2px solid #FFF;
+    padding: 3px 15px;
+    cursor: pointer;
+    margin-right: 10px;
+    position: relative;
+    top: 12px;
+}
+.notification a {
+    color:white;
+    text-decoration:none;
+    font-weight:bold
+}
+.footer {
+	bottom:0px;
+	position: fixed;
+	width: 100%;
+	border: 2px solid black;
+}
+.ca_body {
+	height: 100%;
+}
+
+.reply-time {
+	float: right;
+}
+
+.submit-data{
+	margin: 0 auto;
+    max-width: 150px;
+    padding: 10px 20px;
+}
+
+.btn-patient-data-submit{
+	height: 50px;
+	width: 150px;
+}
+
+#mytable_report, .row-hidden{
+	display: none;
+}
+
+.report-patient-info{
+	display: none;
+}

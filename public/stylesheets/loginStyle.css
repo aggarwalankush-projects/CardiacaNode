@@ -1,0 +1,45 @@
+.panel-heading {
+    padding: 5px 15px;
+}
+
+.panel-footer {
+    padding: 1px 15px;
+    color: #A0A0A0;
+}
+
+.profile-img {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.alert {
+    padding: 8px 35px 8px 14px;
+}
+
+.navbar-custom {
+    color: #FFFFFF;
+    border:0px;
+    margin-bottom:10px;
+}
+
+.custom-alert{
+    margin-top: 10px;
+    margin-bottom:0px;
+    padding: 4px 35px 4px 14px;
+}
+
+.caret-up {
+    width: 0;
+    height: 0;
+    border-left: 4px solid rgba(0, 0, 0, 0);
+    border-right: 4px solid rgba(0, 0, 0, 0);
+    border-bottom: 4px solid;
+
+    display: inline-block;
+    margin-left: 2px;
+    vertical-align: middle;
+}
